@@ -1,0 +1,32 @@
+{
+  "name": "cali-web-api",
+  "version": "1.0.0",
+  "description": "Sistema de administracion para la organizacion Cali Web",
+  "main": "index.js",
+  "scripts": {
+    "dev": "DEBUG=app* nodemon index",
+    "start": "NODE_ENV=production node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CristianManosalva/cali-web-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CristianManosalva/cali-web-api/issues"
+  },
+  "homepage": "https://github.com/CristianManosalva/cali-web-api#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
+  }
+}
