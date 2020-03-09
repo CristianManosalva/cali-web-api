@@ -63,6 +63,21 @@ const modelsApi = app => {
       next(error);
     }
   });
+
+  router.delete('/:modelId', async (req, res, next) => {
+    const { modelId } = req.params;
+
+    try {
+      const modelDeleted = await modelsService.deleteModel({ modelId });
+
+      res.status(200).json({
+        data: modelDeleted,
+        message: 'model deleted'
+      });
+    } catch (error) {
+      next(error);
+    }
+  });
 };
 
 module.exports = modelsApi;

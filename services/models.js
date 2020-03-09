@@ -22,8 +22,13 @@ class ModelsService {
   }
 
   async updateModel({ modelId, model }) {
-    const modelUpdatedId = await await this.db.update(modelId, model);
+    const modelUpdatedId = await this.db.update(modelId, model);
     return modelUpdatedId;
+  }
+
+  async deleteModel({ modelId }) {
+    const modelDeletedId = await this.db.delete(modelId);
+    return modelDeletedId;
   }
 }
 
