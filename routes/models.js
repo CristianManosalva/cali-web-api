@@ -1,10 +1,13 @@
 const express = require('express');
 const ModelsService = require('../services/models.js');
+//const controllers = require('../controllers');
 
 const modelsApi = app => {
   const router = express.Router();
   app.use('/api/models', router);
   const modelsService = new ModelsService();
+
+  //router.get('/models', controllers.getAllModel);
 
   router.get('/', async (req, res, next) => {
     try {

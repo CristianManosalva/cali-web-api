@@ -23,6 +23,12 @@ module.exports = {
           modelId: 3,
           createdAt: new Date(),
           updatedAt: new Date()
+        },
+        {
+          score_model: 4,
+          modelId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ],
       {}

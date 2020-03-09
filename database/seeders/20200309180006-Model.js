@@ -36,6 +36,17 @@ module.exports = {
           birthdate: '08/05/1997',
           createdAt: new Date(),
           updatedAt: new Date()
+        },
+        {
+          first_name: 'Gary',
+          last_name: 'Myers',
+          user_name: 'gmyers3',
+          email: 'gmyers3@mtv.com',
+          gender: 'Male',
+          location_model: 'Oepuah',
+          birthdate: '23/06/1994',
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ],
       {}

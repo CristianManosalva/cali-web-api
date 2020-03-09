@@ -1,33 +1,39 @@
-const DataBase = require('../lib/db.js');
+//const DataBase = require('../lib/db.js');
+const controllers = require('../controllers');
 
 class ModelsService {
   constructor() {
     this.collection = 'models';
-    this.db = new DataBase();
+    //this.db = new DataBase();
   }
 
-  async getModels() {
+  /* async getModels() {
     const models = await this.db.getAll();
+    return models || [];
+  } */
+
+  async getModels() {
+    const models = await controllers.getAll();
     return models || [];
   }
 
   async getModel({ modelId }) {
-    const model = await this.db.getOne(modelId);
+    const model = await controllers.getById(modelId);
     return model || {};
   }
 
   async createModel({ model }) {
-    const modelCreatedId = await this.db.create(model);
+    const modelCreatedId = await controllers.create(model);
     return modelCreatedId || [];
   }
 
   async updateModel({ modelId, model }) {
-    const modelUpdatedId = await this.db.update(modelId, model);
+    const modelUpdatedId = await controllers.update(modelId, model);
     return modelUpdatedId;
   }
 
   async deleteModel({ modelId }) {
-    const modelDeletedId = await this.db.delete(modelId);
+    const modelDeletedId = await controllers.deleteIt(modelId);
     return modelDeletedId;
   }
 }
