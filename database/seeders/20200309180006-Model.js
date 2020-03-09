@@ -22,7 +22,7 @@ module.exports = {
           email: 'gmussilli1@yale.edu',
           gender: 'Male',
           location_model: 'Shangyu',
-          birthdate: '28/08/2001',
+          birthdate: '02/08/2001',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -44,7 +44,7 @@ module.exports = {
           email: 'gmyers3@mtv.com',
           gender: 'Male',
           location_model: 'Oepuah',
-          birthdate: '23/06/1994',
+          birthdate: '12/06/1994',
           createdAt: new Date(),
           updatedAt: new Date()
         }
