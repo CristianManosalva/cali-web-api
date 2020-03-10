@@ -89,3 +89,7 @@ de modelo redondeado a 1 décima
 
 >Se deberá poblar la base de datos para lo cual se recomienda usar seeders y factories con librerías cómo faker (los frameworks node mencionados anteriormente tienen soluciones similares)
 
+```bash
+  Para la generacion de datos se utilizo la herramienta https://mockaroo.com/
+  El orm sequelize permite realizar migraciones de seeders
+```
