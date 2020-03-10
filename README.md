@@ -2,6 +2,9 @@
 Sistema de administracion para la organizacion Cali Web
 
 ## Rutas api -- Consideraciones de la prueba de conocimiento
+
+### Se implemento el uso de middleware para el manejo de errores y tambien para la validacion de datos de entrada.
+
 > El sistema debe permitir conocer las edades, localización geográfica, edad, y género de los modelos
   Se implemento un crud de para la entidad modelos: 
   ```code
