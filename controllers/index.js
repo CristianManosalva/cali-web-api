@@ -1,8 +1,5 @@
 const models = require('../database/models');
 const boom = require('@hapi/boom');
-//const models = [];
-
-//console.log(models);
 const sequelize = require('sequelize');
 
 const create = async model => {

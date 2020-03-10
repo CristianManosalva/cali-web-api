@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const { config } = require('./config/config.js');
 const modelsApi = require('./routes/models.js');
 const {
@@ -9,6 +10,7 @@ const {
 } = require('./utils/middleware/errorHandlers');
 const notFoundHandler = require('./utils/middleware/error404Handler');
 
+app.use(cors);
 //body parser --con este middleware se le otorga la capacidad a la api de poder interpretar el body de request
 app.use(express.json());
 
