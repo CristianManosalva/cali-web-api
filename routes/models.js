@@ -1,6 +1,12 @@
 const express = require('express');
 const ModelsService = require('../services/models.js');
-//const controllers = require('../controllers');
+const {
+  createModelSchema,
+  modelIdSchema,
+  scoreSchema
+} = require('../schemas/model');
+
+const validationHandler = require('../utils/middleware/validationHandler');
 
 const modelsApi = app => {
   const router = express.Router();
@@ -19,82 +25,105 @@ const modelsApi = app => {
     }
   });
 
-  router.get('/:modelId', async (req, res, next) => {
-    const { modelId } = req.params;
-    try {
-      const model = await modelsService.getModel({ modelId });
-      res.status(200).json({
-        data: model,
-        message: 'model retrieved'
-      });
-    } catch (error) {
-      next(error);
+  router.get(
+    '/:modelId',
+    validationHandler({ modelId: modelIdSchema }, 'params'),
+    async (req, res, next) => {
+      const { modelId } = req.params;
+      try {
+        const model = await modelsService.getModel({ modelId });
+        res.status(200).json({
+          data: model,
+          message: 'model retrieved'
+        });
+      } catch (error) {
+        next(error);
+      }
     }
-  });
+  );
 
-  router.post('/', async (req, res, next) => {
-    const { body: model } = req;
-    try {
-      const modelCreated = await modelsService.createModel({ model });
+  router.post(
+    '/',
+    validationHandler(createModelSchema),
+    async (req, res, next) => {
+      const { body: model } = req;
+      try {
+        const modelCreated = await modelsService.createModel({ model });
 
-      res.status(202).json({
-        data: modelCreated,
-        message: 'model created'
-      });
-    } catch (error) {
-      next(error);
+        res.status(202).json({
+          data: modelCreated,
+          message: 'model created'
+        });
+      } catch (error) {
+        next(error);
+      }
     }
-  });
+  );
 
-  router.put('/:modelId', async (req, res, next) => {
-    const { modelId } = req.params;
-    const { body: model } = req;
+  router.put(
+    '/:modelId',
+    validationHandler({ modelId: modelIdSchema }, 'params'),
+    validationHandler(createModelSchema),
+    async (req, res, next) => {
+      const { modelId } = req.params;
+      const { body: model } = req;
 
-    try {
-      const modelUpdated = await modelsService.updateModel({
-        modelId,
-        model
-      });
+      try {
+        const modelUpdated = await modelsService.updateModel({
+          modelId,
+          model
+        });
 
-      res.status(200).json({
-        data: modelUpdated,
-        message: 'model updated'
-      });
-    } catch (error) {
-      next(error);
+        res.status(200).json({
+          data: modelUpdated,
+          message: 'model updated'
+        });
+      } catch (error) {
+        next(error);
+      }
     }
-  });
+  );
 
-  router.delete('/:modelId', async (req, res, next) => {
-    const { modelId } = req.params;
+  router.delete(
+    '/:modelId',
+    validationHandler({ modelId: modelIdSchema }, 'params'),
+    async (req, res, next) => {
+      const { modelId } = req.params;
 
-    try {
-      const modelDeleted = await modelsService.deleteModel({ modelId });
+      try {
+        const modelDeleted = await modelsService.deleteModel({ modelId });
 
-      res.status(200).json({
-        data: modelDeleted,
-        message: 'model deleted'
-      });
-    } catch (error) {
-      next(error);
+        res.status(200).json({
+          data: modelDeleted,
+          message: 'model deleted'
+        });
+      } catch (error) {
+        next(error);
+      }
     }
-  });
+  );
 
-  router.get('/scoremodel/:modelId', async (req, res, next) => {
-    const { modelId } = req.params;
-    const { score } = req.query;
+  router.post(
+    '/scoremodel',
+    validationHandler({ modelId: modelIdSchema, score_model: scoreSchema }),
+    async (req, res, next) => {
+      const { modelId, score_model } = req.body;
 
-    try {
-      const modelScored = await modelsService.scoreModel({ modelId, score });
+      try {
+        const modelScored = await modelsService.scoreModel({
+          modelId,
+          score_model
+        });
 
-      res.status(200).json({
-        data: modelScored,
-        message: 'model scored'
-      });
-    } catch (error) {
-      next(error);
+        res.status(200).json({
+          data: modelScored,
+          message: 'model scored'
+        });
+      } catch (error) {
+        next(error);
+      }
     }
-  });
+  );
 
   router.get('/get/score/average', async (req, res, next) => {
     try {

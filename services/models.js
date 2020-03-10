@@ -30,8 +30,8 @@ class ModelsService {
     return modelDeletedId;
   }
 
-  async scoreModel({ modelId, score }) {
-    const modelScored = await controllers.putScore(modelId, score);
+  async scoreModel({ modelId, score_model }) {
+    const modelScored = await controllers.putScore(modelId, score_model);
     return modelScored;
   }
 

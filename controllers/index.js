@@ -1,4 +1,5 @@
 const models = require('../database/models');
+const boom = require('@hapi/boom');
 //const models = [];
 
 //console.log(models);
@@ -10,7 +11,6 @@ const create = async model => {
     return created_model;
   } catch (error) {
     throw new Error('Error createing model');
-    //return error.name;
   }
 };
 
@@ -27,7 +27,6 @@ const getAll = async () => {
     return modelGet;
   } catch (error) {
     throw new Error('Error gettig model');
-    //return error;
   }
 };
 
@@ -42,10 +41,12 @@ const getById = async modelId => {
         }
       ]
     });
+    if (!model) {
+      throw new Error('Model not found');
+    }
     return model;
   } catch (error) {
-    throw new Error('Error gettig model');
-    //return error;
+    throw boom.notFound(new Error('Model not found'));
   }
 };
 
@@ -56,8 +57,7 @@ const update = async (modelId, model) => {
     });
     return created_model;
   } catch (error) {
-    throw new Error('Error updating model');
-    //return error.name;
+    throw boom.notFound(new Error('Model not found'));
   }
 };
 
@@ -71,8 +71,7 @@ const deleteIt = async modelId => {
     }
     throw new Error('Model not found');
   } catch (error) {
-    throw new Error('Error deleting model');
-    //return error.name;
+    throw boom.notFound(new Error('Model not found'));
   }
 };
 
@@ -81,8 +80,7 @@ const putScore = async (modelId, score_model) => {
     const scoredModel = await models.Score.create({ modelId, score_model });
     return scoredModel;
   } catch (error) {
-    throw new Error('Error scoring model');
-    //return error.name;
+    throw boom.notFound(new Error('Model not found'));
   }
 };
 
@@ -114,9 +112,7 @@ const getScoreAverage = async () => {
     });
     return modelGet;
   } catch (error) {
-    //console.log(error);
     throw new Error('Error gettig score average');
-    //return error;
   }
 };
 

@@ -12,6 +12,7 @@ module.exports = {
           gender: 'Female',
           location_model: 'Sizhou',
           birthdate: '06/06/1998',
+          state_user: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -23,6 +24,7 @@ module.exports = {
           gender: 'Male',
           location_model: 'Shangyu',
           birthdate: '02/08/2001',
+          state_user: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -34,6 +36,7 @@ module.exports = {
           gender: 'Male',
           location_model: 'Ibarreta',
           birthdate: '08/05/1997',
+          state_user: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -45,6 +48,7 @@ module.exports = {
           gender: 'Male',
           location_model: 'Oepuah',
           birthdate: '12/06/1994',
+          state_user: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         }
