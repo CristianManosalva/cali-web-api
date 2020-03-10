@@ -2,6 +2,7 @@ const models = require('../database/models');
 //const models = [];
 
 //console.log(models);
+const sequelize = require('sequelize');
 
 const create = async model => {
   try {
@@ -75,26 +76,56 @@ const deleteIt = async modelId => {
   }
 };
 
-/* const getAllModesl = async (req, res) => {
+const putScore = async (modelId, score_model) => {
   try {
-    const posts = await models.Model.findAll({
+    const scoredModel = await models.Score.create({ modelId, score_model });
+    return scoredModel;
+  } catch (error) {
+    throw new Error('Error scoring model');
+    //return error.name;
+  }
+};
+
+const getScoreAverage = async () => {
+  try {
+    const modelGet = await models.Model.findAll({
+      attributes: [
+        'Model.location_model',
+        [
+          sequelize.fn(
+            'ROUND',
+            sequelize.fn('AVG', sequelize.col('scores.score_model')),
+            '1'
+          ),
+          'average_score'
+        ]
+      ],
       include: [
         {
+          attributes: {
+            exclude: ['id', 'score_model', 'modelId', 'createdAt', 'updatedAt']
+          },
           model: models.Score,
           as: 'scores'
         }
-      ]
+      ],
+      group: ['Model.location_model'],
+      raw: true
     });
-    return res.status(200).json({ posts });
+    return modelGet;
   } catch (error) {
-    return res.status(500).send(error.message);
+    //console.log(error);
+    throw new Error('Error gettig score average');
+    //return error;
   }
-}; */
+};
 
 module.exports = {
   getAll,
   getById,
   create,
   update,
-  deleteIt
+  deleteIt,
+  putScore,
+  getScoreAverage
 };

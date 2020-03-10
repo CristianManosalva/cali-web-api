@@ -1,16 +1,9 @@
-//const DataBase = require('../lib/db.js');
 const controllers = require('../controllers');
 
 class ModelsService {
   constructor() {
     this.collection = 'models';
-    //this.db = new DataBase();
   }
-
-  /* async getModels() {
-    const models = await this.db.getAll();
-    return models || [];
-  } */
 
   async getModels() {
     const models = await controllers.getAll();
@@ -35,6 +28,16 @@ class ModelsService {
   async deleteModel({ modelId }) {
     const modelDeletedId = await controllers.deleteIt(modelId);
     return modelDeletedId;
+  }
+
+  async scoreModel({ modelId, score }) {
+    const modelScored = await controllers.putScore(modelId, score);
+    return modelScored;
+  }
+
+  async getScoreAverage() {
+    const scoreAverage = await controllers.getScoreAverage();
+    return scoreAverage;
   }
 }
 

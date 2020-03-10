@@ -7,8 +7,6 @@ const modelsApi = app => {
   app.use('/api/models', router);
   const modelsService = new ModelsService();
 
-  //router.get('/models', controllers.getAllModel);
-
   router.get('/', async (req, res, next) => {
     try {
       const models = await modelsService.getModels();
@@ -76,6 +74,35 @@ const modelsApi = app => {
       res.status(200).json({
         data: modelDeleted,
         message: 'model deleted'
+      });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.get('/scoremodel/:modelId', async (req, res, next) => {
+    const { modelId } = req.params;
+    const { score } = req.query;
+
+    try {
+      const modelScored = await modelsService.scoreModel({ modelId, score });
+
+      res.status(200).json({
+        data: modelScored,
+        message: 'model scored'
+      });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.get('/get/score/average', async (req, res, next) => {
+    try {
+      const modelScored = await modelsService.getScoreAverage();
+
+      res.status(200).json({
+        data: modelScored,
+        message: 'model scored'
       });
     } catch (error) {
       next(error);
