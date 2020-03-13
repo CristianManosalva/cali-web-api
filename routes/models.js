@@ -131,7 +131,7 @@ const modelsApi = app => {
 
       res.status(200).json({
         data: modelScored,
-        message: 'model scored'
+        message: 'score average'
       });
     } catch (error) {
       next(error);

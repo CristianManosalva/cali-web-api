@@ -1,0 +1,15 @@
+{
+  "name": "web-cali",
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@now/node-server@canary",
+      "config": { "bundle": false }
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
+  "env": {
+    "DEV_DATABASE_URL": "@url-db"
+  }
+}
