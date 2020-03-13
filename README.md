@@ -26,6 +26,7 @@ Se definio la entidad modelos de la siguiente manera.
 Crea un modelo en la base de datos, el cuerpo de la peticion a la api debe ser un json con los con los atributos del modelo. Los datos son validados mediante un middleware.
   
 **Llamada a la api** : https://web-cali.now.sh/api/models
+
 Body:
 ```bash
     body: {
@@ -93,7 +94,7 @@ Parametro:
 
 Así mismo el sistema deberá permitir registrar la puntuación (0 a 5 estrellas),tenga presente que la puntuación puede ser actualizada y se desea poder conocer valores pasados asignados.
 
-#### realizar puntuacion: metodo post####
+#### realizar puntuacion: metodo post ####
 
 Registra una nueva puntuacion asosiada a un modelo. El cuerpo de la llamada debe contener el id del modelo que se desea puntuar y la puntuacion.
 
